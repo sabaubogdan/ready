@@ -1,9 +1,13 @@
 package xyz.vegaone.ready.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "file", type = "FILE")
 public class FileEsEntity {
+
+    @Id
+    private String id;
 
     private String nameOfTheFile;
 

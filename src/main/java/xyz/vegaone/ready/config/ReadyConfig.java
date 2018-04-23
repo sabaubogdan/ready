@@ -19,7 +19,7 @@ import java.net.InetAddress;
 @Configuration
 public class ReadyConfig {
 
-    private  final ElasticSearchProperties elasticSearchProperties;
+    private final ElasticSearchProperties elasticSearchProperties;
 
     @Autowired
     public ReadyConfig(ElasticSearchProperties elasticSearchProperties) {
@@ -39,13 +39,11 @@ public class ReadyConfig {
                                 InetAddress.getByName(elasticSearchProperties.getHost()), elasticSearchProperties.getPort()));
 
         return transportClient;
-
     }
 
     @Bean
-    public ElasticsearchOperations elasticsearchOperations(Client client){
+    public ElasticsearchOperations elasticsearchOperations(Client client) {
 
-        ElasticsearchTemplate elasticsearchTemplate = new ElasticsearchTemplate(client);
-        return elasticsearchTemplate;
+        return new ElasticsearchTemplate(client);
     }
 }

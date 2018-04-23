@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import xyz.vegaone.ready.domain.FileEsEntity;
 import xyz.vegaone.ready.dto.FileDto;
@@ -20,7 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-import static xyz.vegaone.ready.service.ReadyConstants.*;
+
+import static xyz.vegaone.ready.service.ReadyConstants.DOC_FILE_FORMAT;
+import static xyz.vegaone.ready.service.ReadyConstants.PDF_FILE_FORMAT;
+import static xyz.vegaone.ready.service.ReadyConstants.TXT_FILE_FORMAT;
 
 @Service
 @Slf4j
@@ -45,7 +47,7 @@ public class FileService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            fileEsRepo.save(fileEsEntityList);
+            fileEsRepo.saveAll(fileEsEntityList);
         });
 
         return pdfList.size();
